@@ -1,0 +1,137 @@
+#%RAML 1.0
+title: Customers Service API
+version: v1
+protocols: [ HTTP ]
+baseUri: http://api.{baseDomain}/{version}/
+baseUriParameters:
+  baseDomain:
+    description: The base DNS domain name, such as example.com
+mediaType: application/json
+types:
+  Customers:
+    type: object
+    properties:
+      customers:
+        type: array
+        items:
+          type: object
+          properties:
+            customerId: number
+            streetAddress: string
+            unitNumber: string
+            city: string
+            state: string
+            postalCode: number
+            telephone: number
+            primaryContactFirstName: string
+            primaryContactLastName: string
+  newCustomer:
+    type: object
+    properties:
+      streetAddress:
+        type: string
+        required: true
+      unitNumber:
+        type: string
+        required: false
+      city:
+        type: string
+        required: true
+      state:
+        type: string
+        required: true
+      postalCode:
+        type: number
+        required: true
+      telephone:
+        type: number
+        required: true
+      primaryContactFirstName:
+        type: string
+        required: true
+      primaryContactLastName:
+        type: string
+        required: true
+/customers:
+  description: Collection of customers in the customers database
+  get:
+    description: Get a list of customers from the customers database
+    queryParameters:
+      customerId:
+        displayName: Customer ID
+        type: number
+        description: The ID of the specific customer to be retrieved
+        example: 5678
+        required: False
+      state:
+        displayName: State
+        type: number
+        description: Retrieve all customers in a specific state
+        example: 1234
+        required: False
+      postalCode:
+        displayName: Postal Code
+        type: number
+        description: Retrieve all customers in a specific postal code
+        required: False
+    responses:
+      200:
+        body:
+          application/json:
+            type: Customers
+            example: |
+              {
+                "customers": [
+                  {
+                    "customerId": 1234,
+                    "streetAddress": "123 main Street",
+                    "unitNumber": "Apt. B",
+                    "city": "Castle Rock",
+                    "state": "CO",
+                    "postalCode": 80108,
+                    "telephone": 3035551212,
+                    "primaryContactFirstName": "Bob",
+                    "primaryContactLastName": "Smith"
+                  }
+                ]
+              }
+  post:
+    body:
+      application/json:
+        type: newCustomer
+        example: |
+          {
+            "streetAddress": "123 Main Street",
+            "unitNumber": "Apt. B",
+            "city": "Denver",
+            "state": "CO",
+            "postalCode": 80108,
+            "telephone": 3035551212,
+            "primaryContactFirstName": "John",
+            "primaryContactLastName": "Doe"
+          }
+  /{customerId}:
+    description: A specific customers in the customers database
+    get:
+      description: Get the order with `customerId = {customerId}`
+      responses:
+        200:
+          body:
+            application/json:
+              type: Customers
+              example: |
+                {
+                  "customers": [
+                    {
+                      "customerId": 1234,
+                      "streetAddress": "123 main Street",
+                      "unitNumber": "Apt. B",
+                      "city": "Castle Rock",
+                      "state": "CO",
+                      "postalCode": 80108,
+                      "telephone": 3035551212,
+                      "primaryContactFirstName": "Bob",
+                      "primaryContactLastName": "Smith"
+                    }
+                  ]
+                }

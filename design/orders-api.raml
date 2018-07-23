@@ -1,0 +1,100 @@
+#%RAML 1.0
+title: Orders Service API
+version: v1
+protocols: [ HTTP ]
+baseUri: http://api.{baseDomain}/{version}/
+baseUriParameters:
+  baseDomain:
+    description: The base DNS domain name, such as example.com
+mediaType: application/json
+types:
+  Orders:
+    type: object
+    properties:
+      orders:
+        type: array
+        items:
+          type: object
+          properties:
+            orderId: number
+            customerId: number
+            orderDate: datetime
+            totalCost: number
+            custBillingRef: string
+  newOrder:
+    type: object
+    properties:
+      customerId:
+        type: number
+        required: true
+      totalCost:
+        type: number
+        required: true
+      custBillingRef:
+        type: string
+        required: true
+/orders:
+  description: Collection of orders in the orders database
+  get:
+    description: Get a list of orders based on order ID or customer ID
+    queryParameters:
+      orderId:
+        displayName: Order ID
+        type: number
+        description: The ID of the specific order to be retrieved
+        example: 5678
+        required: False
+      customerID:
+        displayName: Customer ID
+        type: number
+        description: The ID of the customer whose orders should be retrieved
+        example: 1234
+        required: False
+    responses:
+      200:
+        body:
+          application/json:
+            type: Orders
+            example: |
+              {
+                "orders": [
+                  {
+                    "orderId": 5678,
+                    "customerId": 1234,
+                    "orderDate": "2018-07-19T09:00:00Z",
+                    "totalCost": 1123.57,
+                    "custBillingRef": "ABC012345"
+                  }
+                ]
+              }
+  post:
+    body:
+      application/json:
+        type: newOrder
+        example: |
+          {
+            "customerId": 1234,
+            "totalCost": 5678.90,
+            "custBillingRef": "XYZ101010"
+          }
+  /{orderId}:
+    description: A specific order in the orders database
+    get:
+      description: Get the order with `orderId = {orderId}`
+      responses:
+        200:
+          body:
+            application/json:
+              type: Orders
+              example: |
+                {
+                  "orders": [
+                    {
+                      "orderId": 5678,
+                      "customerId": 1234,
+                      "orderDate": "2018-07-19T09:00:00Z",
+                      "totalCost": 1123.57,
+                      "custBillingRef": "ABC012345"
+                    }
+                  ]
+                }
