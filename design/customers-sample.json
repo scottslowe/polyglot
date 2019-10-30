@@ -1,0 +1,56 @@
+{
+    "collection": {
+        "version": "1.0",
+        "href": "http://api.polyglot.scottlowe.org/1.0/customers/",
+        "items": [
+            {
+                "href": "http://api.baseDomain/version/customers/1001",
+                "data": [
+                    { "name": "customerId",
+                      "value": "1001" },
+                    { "name": "address",
+                      "value": "123 Main Street" },
+                    { "name": "unit",
+                      "value": "Suite 100" },
+                    { "name": "city",
+                      "value": "Anywhere" },
+                    { "name": "state",
+                      "value": "CO" }
+                    { "name": "postalCode",
+                      "value": "80124" },
+                    { "name": "telephone",
+                      "value": "3035551212" },
+                    { "name": "contactFirstName",
+                      "value": "Scott" },
+                    { "name": "contactLastName",
+                      "value": "Lowe" }
+                ],
+                "links": []
+            },
+            {
+                "href": "http://api.baseDomain/version/customers/1002",
+                "data": [
+                    { "name": "customerId",
+                      "value": "1002" },
+                    { "name": "address",
+                      "value": "5000 Corporate Drive" },
+                    { "name": "unit",
+                      "value": "" },
+                    { "name": "city",
+                      "value": "Denver" },
+                    { "name": "state",
+                      "value": "CO" }
+                    { "name": "postalCode",
+                      "value": "80109" },
+                    { "name": "telephone",
+                      "value": "7208675309" },
+                    { "name": "contactFirstName",
+                      "value": "Bob" },
+                    { "name": "contactLastName",
+                      "value": "Smith" }
+                ],
+                "links": []
+            }
+        ]
+    }
+}

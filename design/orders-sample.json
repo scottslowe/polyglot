@@ -1,0 +1,40 @@
+{
+    "collection": {
+        "version": "1.0",
+        "href": "http://api.polyglot.scottlowe.org/1.0/",
+        "items": [
+            {
+                "href": "http://api.polyglot.scottlowe.org/1.0/orders/0001",
+                "data": [
+                    { "name": "orderId",
+                      "value": "0001" },
+                    { "name": "customerId",
+                      "value": "0001" },
+                    { "name": "orderDate",
+                      "value": "2019-01-01T12:00:00Z-07" },
+                    { "name": "orderCost",
+                      "value": "1123.57" },
+                    { "name": "custBillingRef",
+                      "value": "" }
+                ],
+                "links": []
+            },
+            {
+                "href": "http://api.polyglot.scottlowe.org/1.0/orders/0002",
+                "data": [
+                    { "name": "orderId",
+                      "value": "0002" },
+                    { "name": "customerId",
+                      "value": "0001" },
+                    { "name": "orderDate",
+                      "value": "2019-02-01T12:00:00Z-07" },
+                    { "name": "orderCost",
+                      "value": "2152.32" },
+                    { "name": "custBillingRef",
+                      "value": "" }
+                ],
+                "links": []
+            }
+        ]
+    }
+}
